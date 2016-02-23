@@ -1,0 +1,184 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title>Regex Javascript Validator</title>
+	<script type="text/javascript" src="jquery-1.12.0.min.js"></script>
+	<script type="text/javascript" src="validator.js"></script>
+
+	<style type="text/css">
+		span[class^='warning'] {
+			color: #ff0000 ;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		#header {
+			width: 100%;
+			border: 1px dashed #cccccc;
+			text-align: center;
+			height: 100px;
+			line-height: 100px;
+			font-size: 1.5em;
+			background-color: #66FF99;
+		}
+
+		#content {
+			width: 800px;
+			height: 600px;
+			margin:0 auto;
+			border: 1px solid #cccccc;
+			overflow: hidden;
+		}
+
+		#content > p {
+			display: block;
+			text-align: center;
+			font-weight: bold;
+			margin-top: 20px;
+		}
+
+		#div_reg {
+			float: left;
+			height: 600px;
+			line-height: 300px;
+			width:400px;
+			font-weight: bold
+			border: 1px dashed #cccccc;
+			margin-left: 200px;
+			margin-top: 100px;
+		}
+
+		#btn_submit {
+			display: block;
+			margin: 0 auto;
+			width: 400px;
+			text-align: center;
+			height: 30px;
+			line-height: 30px;
+		}
+
+		#footer {
+			width: 800px;
+			height: 100px;
+			line-height: 100px;
+			font-size: 1.5em;
+			text-align: center;
+			background-color: #66FF99;
+			margin: 0 auto;
+		}
+
+		
+
+	</style>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			// alert("Validator Test");
+		});
+
+		function frm_submit() {
+			var name = $('#name').val();
+			var username = $('#username').val();
+			var pw = $('#pw').val();
+			var v_pw = $('#v_pw').val();
+			var age = $('#age').val();
+			var phone = $('#phone').val();
+			var ads = $('#ads').val();
+
+			var fail = validate(['name','age'], 
+								{
+									'name' : "required|name| customized error",
+									'age': 'required|digit'
+								});
+
+			if(fail) {
+				return false;
+			}
+
+			$.ajax({
+				url: "backend url",
+				data: {
+					name: name,
+					age: age
+				},
+				dataType:"json",
+				type:"post",
+				cache:false,
+				success: function(ret) {
+					/*...parse ret...*/
+				}
+			});
+
+
+		}
+	</script>
+</head>
+<body>
+
+<script></script>
+
+<header id="header">
+	<h1>Register</h1>
+</header>
+
+<section id="content">
+	<p>Test input valiation here...(i.e. input digits to Name column and input characters for Age column etc..).</p>
+	<div id="div_reg">
+		
+		<form id="frm_reg">
+			<table cellspacing="10">
+				<tr>
+					<td>Name</td>
+					<td><input name="name" id="name" type="text"/></td>
+					<td><span class="warning_name"></span></td>
+				</tr>
+				<tr>
+					<td>User Name</td>
+					<td><input name="username" id="username" type="text"/></td>
+					<td><span class="warning_username"></span></td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td><input name="pw" id="pw" type="password"></td>
+					<td><span class="warning_pw"></span></td>
+				</tr>
+				<tr>
+					<td>Verify Password</td>
+					<td><input name="v_pw" id="v_pw" type="password"></td>
+					<td><span class="warning_v_pw"></span></td>
+				</tr>
+				<tr>
+					<td>Age</td>
+					<td><input name="age" id="age" type="text"/></td>
+					<td><span class="warning_age"></span></td>
+				</tr>
+				<tr>
+					<td>Phone</td>
+					<td><input name="phone" id="phone" type="text"/></td>
+					<td><span class="warning_phone"></span></td>
+				</tr>
+				<tr>
+					<td>Address</td>
+					<td><input name="ads" id="ads" type="text"/></td>
+					<td><span class="warning_ads"></span></td>
+				</tr>
+			</table>	
+		</form>	
+
+		<button id="btn_submit" onclick="frm_submit()">Done</button>
+	</div>
+</section>
+
+<footer id="footer">
+	Footer
+</footer>
+
+</body>
+</html>
