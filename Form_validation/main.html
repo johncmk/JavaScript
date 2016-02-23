@@ -93,10 +93,10 @@
 			var ads = $('#ads').val();
 
 			var fail = validate(['name','age'], 
-								{
-									'name' : "required|name| customized error",
-									'age': 'required|digit'
-								});
+			{
+				'name' : "required|name| customized error",
+				'age': 'required|digit'
+			});
 
 			if(fail) {
 				return false;
