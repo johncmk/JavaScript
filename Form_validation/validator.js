@@ -1,8 +1,9 @@
 /*
-Valition sample
-JQuery not required here.
+Validation sample
+This library does not require JQuery.
 inspired by Laravel validator
 
+Laravel Ver.
 ex:
 	$this->validate($request, [
 	    'title' => 'required|unique:posts|max:255',
@@ -11,10 +12,10 @@ ex:
 	]);
 
 ======================================================================================
-									SAMPLE USAGE
+SAMPLE USAGE
 ======================================================================================
-The first param needs to check validation roderly.
-
+The first param passes array to validate each id value orderly.
+The second param passes dictionary that maps id of the first param then returns regex rules
 validate([id arr], {id: "required|name"})
 
 ex:
@@ -23,21 +24,21 @@ ex:
 	<input id="age" type="text"/>
 
 	var fail = validate(['name','age'], 
-									{
-										'name' : "required|name| customized error",
-										'age': 'required|digit'
-									});
+	{
+		'name' : "required|name| customized error",
+		'age': 'required|digit'
+	});
 
-				if(fail) {
-					return false;
-				}
+	if(fail) {
+		return false;
+	}
 ======================================================================================
 ======================================================================================
 */
 
 /*
- * 1.Regex Expressoin.
- * 2.add regex variable then add key to the regex json.
+ * 1.add new variable that contains Regex rule.
+ * 2.add the regex variable into the regex json follow by key that matches to the variable name.
  * 3.add new case in the switch statement under get_msg function.
  */
 
